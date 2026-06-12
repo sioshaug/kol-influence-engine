@@ -1,6 +1,9 @@
-streamlit>=1.39
-pandas>=2.0
-numpy>=1.24
-networkx>=3.1
-requests>=2.31
-pyvis>=0.3.2
+# Pinned to the versions this app was built and tested with, so the deployed
+# app can't break when a library publishes a new release. To upgrade later,
+# bump a version here, test locally, and re-deploy.
+streamlit==1.50.0
+pandas==2.3.3
+numpy==2.0.2
+networkx==3.2.1
+requests==2.32.5
+pyvis==0.3.2

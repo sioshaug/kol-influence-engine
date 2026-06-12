@@ -123,6 +123,13 @@ with st.sidebar:
     only_ws = st.checkbox("🎯 White-space (under-engaged) only")
     name_q = st.text_input("Search name")
 
+    st.divider()
+    with st.expander("ℹ️ About & responsible use"):
+        st.caption("Methodological portfolio demo. Influence scores are heuristic and "
+                   "derived only from public PubMed + ClinicalTrials.gov data — not "
+                   "endorsements or judgments about individuals, and not for clinical, "
+                   "promotional, or commercial use.")
+
 df = rescore(df_full, weights)
 
 # apply filters. Flag filters (rising / white-space) search across ALL tiers,
@@ -338,6 +345,15 @@ with tab_brief:
             st.write(f"- Active: {row['active_years']}")
 
 st.divider()
-st.caption("Data: PubMed/MEDLINE (NCBI E-utilities) · ClinicalTrials.gov API v2. "
-           "Built as a Medical Affairs portfolio demonstration · not for clinical or "
-           "promotional use.")
+st.markdown(
+    "**About & responsible use.** This is a **methodological demonstration** built for "
+    "a Medical Affairs portfolio. Influence scores are **heuristic** and derived only "
+    "from public bibliographic and trial-registry data (PubMed/MEDLINE via NCBI "
+    "E-utilities; ClinicalTrials.gov API v2). They are **not endorsements, rankings of "
+    "merit, or judgments about any individual**, and the “rising star” / “white-space” "
+    "flags are illustrative engagement-prioritisation concepts, **not** assessments of a "
+    "person. Names shown are real researchers identified from their public publications; "
+    "no private or personal data is used. **Not for clinical, promotional, or commercial "
+    "decision-making.**")
+st.caption("Data: PubMed/MEDLINE (NCBI E-utilities) · ClinicalTrials.gov API v2 · "
+           f"snapshot built {meta['built']}.")
