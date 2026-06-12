@@ -207,12 +207,20 @@ with tab_home:
         "Adjust the **scoring weights** in the left sidebar at any time to match your "
         "medical strategy.")
 
+    _tier1 = int((df_full['influence_score'] >= df_full['influence_score']
+                  .quantile(config.TIER_PERCENTILES['Tier 1'])).sum())
+
+    def _stat(col, label, value):
+        col.markdown(
+            f"<div style='font-size:0.8rem;color:#6b7280;margin-bottom:2px'>{label}</div>"
+            f"<div style='font-size:1.5rem;font-weight:700;line-height:1.2'>{value}</div>",
+            unsafe_allow_html=True)
+
     hc1, hc2, hc3, hc4 = st.columns(4)
-    hc1.metric("Therapeutic area", meta["indication"])
-    hc2.metric("Experts mapped", f"{len(df_full):,}")
-    hc3.metric("Tier 1", int((df_full['influence_score'] >= df_full['influence_score']
-                              .quantile(config.TIER_PERCENTILES['Tier 1'])).sum()))
-    hc4.metric("Data sources", "PubMed + CT.gov")
+    _stat(hc1, "Therapeutic area", meta["indication"])
+    _stat(hc2, "Experts mapped", f"{len(df_full):,}")
+    _stat(hc3, "Tier 1 experts", f"{_tier1:,}")
+    _stat(hc4, "Data sources", "PubMed + ClinicalTrials.gov")
 
     st.caption("Worked example shown: multiple myeloma. The same engine runs on any "
                "therapeutic area. Built as a Medical Affairs portfolio demonstration — "
