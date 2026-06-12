@@ -1,9 +1,9 @@
-# Pinned to the versions this app was built and tested with, so the deployed
-# app can't break when a library publishes a new release. To upgrade later,
-# bump a version here, test locally, and re-deploy.
-streamlit==1.50.0
-pandas==2.3.3
-numpy==2.0.2
-networkx==3.2.1
-requests==2.32.5
-pyvis==0.3.2
+# Flexible ranges with upper bounds: lets the host resolve a mutually-compatible
+# set for its Python version (avoids exact-pin install/ABI mismatches on the
+# cloud), while the upper bounds guard against a future major release breaking it.
+streamlit>=1.39,<2
+pandas>=2.0,<3
+numpy>=1.24,<3
+networkx>=3.1,<4
+requests>=2.31,<3
+pyvis>=0.3.2,<0.4
