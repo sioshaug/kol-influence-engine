@@ -153,8 +153,71 @@ df_view = df[mask].copy()
 # ---------------------------------------------------------------------------
 # Tabs
 # ---------------------------------------------------------------------------
-tab_overview, tab_list, tab_net, tab_brief = st.tabs(
-    ["📊 Overview", "📋 Tiered list", "🕸️ Network map", "📝 KOL brief"])
+tab_home, tab_overview, tab_list, tab_net, tab_brief = st.tabs(
+    ["🏠 Home", "📊 Overview", "📋 Tiered list", "🕸️ Network map", "📝 KOL brief"])
+
+# ----- Home / landing -----
+with tab_home:
+    st.markdown(
+        "### Find the right scientific experts to engage — and know *why*.")
+    st.markdown(
+        "The **KOL Influence Mapping Engine** reads public medical literature and "
+        "clinical-trial records, identifies the **Key Opinion Leaders (KOLs)** in a "
+        "therapeutic area, ranks them on a transparent influence score, and explains "
+        "**who to engage first and with what scientific narrative** — turning weeks of "
+        "manual list-building into a reproducible, defensible decision.")
+    st.success("**The decision it changes:** who should Field Medical engage first, "
+               "and why — backed by evidence, not gut feel.")
+
+    st.markdown("#### Who it's for")
+    p1, p2, p3 = st.columns(3)
+    with p1:
+        st.markdown("**🔬 Medical Science Liaisons**")
+        st.caption("A ranked list of who to engage in their territory, plus a "
+                   "ready scientific-exchange brief for each expert.")
+    with p2:
+        st.markdown("**🩺 Medical Directors**")
+        st.caption("National/global tiering with adjustable, defensible scoring — "
+                   "no black box. Re-weight the model and watch the tiers re-form.")
+    with p3:
+        st.markdown("**📈 Commercial / Launch leads**")
+        st.caption("Alignment between medical KOL tiers and target accounts, plus "
+                   "white-space and rising-star signals.")
+
+    st.markdown("#### What makes it different")
+    st.markdown(
+        "- ⭐ **Rising stars** — high recent output, modest total volume. Engage future "
+        "leaders *before* competitors do.\n"
+        "- 🎯 **White-space (under-engaged)** — high influence, little industry "
+        "interaction. A priority list for new scientific relationships.\n"
+        "- 🎛️ **Transparent & adjustable** — every scoring weight is exposed in the "
+        "sidebar, so a Medical Director can defend why someone is Tier 1.\n"
+        "- 🕸️ **Network-aware** — finds the *connectors* who link separate research "
+        "groups, not just the highest publishers.")
+
+    st.markdown("#### How to use this app")
+    st.markdown(
+        "- **📊 Overview** — the landscape at a glance: tier counts, top experts, "
+        "research themes, and geography.\n"
+        "- **📋 Tiered list** — every expert ranked and filterable (by tier, region, "
+        "country, or flag); export a CRM-ready CSV.\n"
+        "- **🕸️ Network map** — the coauthorship web around any expert.\n"
+        "- **📝 KOL brief** — a profile, suggested talking points, score breakdown, and "
+        "the expert's actual publications and trials.\n\n"
+        "Adjust the **scoring weights** in the left sidebar at any time to match your "
+        "medical strategy.")
+
+    hc1, hc2, hc3, hc4 = st.columns(4)
+    hc1.metric("Therapeutic area", meta["indication"])
+    hc2.metric("Experts mapped", f"{len(df_full):,}")
+    hc3.metric("Tier 1", int((df_full['influence_score'] >= df_full['influence_score']
+                              .quantile(config.TIER_PERCENTILES['Tier 1'])).sum()))
+    hc4.metric("Data sources", "PubMed + CT.gov")
+
+    st.caption("Worked example shown: multiple myeloma. The same engine runs on any "
+               "therapeutic area. Built as a Medical Affairs portfolio demonstration — "
+               "see the About note in the sidebar. 👉 Start with the **Overview** or "
+               "**Tiered list** tab above.")
 
 # ----- Overview -----
 with tab_overview:
