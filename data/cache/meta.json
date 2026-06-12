@@ -1,0 +1,27 @@
+{
+  "indication": "Multiple Myeloma",
+  "built": "2026-06-12 09:27 UTC",
+  "source": "live",
+  "n_publications": 9,
+  "n_trials": 0,
+  "weights": {
+    "publications": 0.25,
+    "seniority": 0.2,
+    "recency": 0.15,
+    "trials": 0.2,
+    "citations": 0.1,
+    "centrality": 0.1
+  },
+  "summary": {
+    "experts": 1629,
+    "tier1": 166,
+    "tier2": 325,
+    "tier3": 1138,
+    "rising_stars": 314,
+    "whitespace": 469
+  },
+  "sources": [
+    "PubMed / MEDLINE (NCBI E-utilities)",
+    "ClinicalTrials.gov API v2"
+  ]
+}

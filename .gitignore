@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# NOTE: data/cache/ is intentionally COMMITTED so the deployed public app serves
+# the real (live) data instantly. Rebuild it with scripts/build_cache.py and
+# commit the changes. If you'd rather keep it out of git, uncomment the next line.
+# data/cache/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Streamlit
+.streamlit/secrets.toml
